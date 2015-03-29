@@ -8,13 +8,13 @@ import android.test.AndroidTestCase;
 
 public class NoSuchMessageExceptionTest extends InstrumentationTestCase {
 	
-	public void constructorString() {
+	public void testConstructorString() {
 		final String msg = "abcde";
 		assertEquals(msg, (new NoSuchMessageException(msg).getMessage()));
 	}
 	
-	public void constructorException() {
-		final Throwable cause = new UnknownError();
+	public void testConstructorException() {
+		final Exception cause = new IndexOutOfBoundsException();
 		assertEquals(cause, (new NoSuchMessageException(cause).getCause()));
 	}
 }
