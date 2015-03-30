@@ -15,11 +15,12 @@ import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import static org.junit.Assert.*;
 
-public class IdentityDatabaseTest extends AndroidTestCase {
+public class IdentityDatabaseTest {
 	
 	/* There are, as far as I can tell, no implementations of this interface */
-	private CursorFactory cursorFactory = null;
+	/*private CursorFactory cursorFactory = null;
 	
 	public IdentityDatabase getDatabaseInstance() {
 		return new IdentityDatabase(this.getContext(), new DatabaseHelper(this.getContext(), "test.Identity", cursorFactory, 0));
@@ -73,6 +74,7 @@ public class IdentityDatabaseTest extends AndroidTestCase {
 		}
 		
 		/** I have no idea what this means */
+    /*
 		@Override
 		public int getType() {return 0;}
 		
@@ -111,5 +113,5 @@ public class IdentityDatabaseTest extends AndroidTestCase {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		}
-	}
+	}*/
 }

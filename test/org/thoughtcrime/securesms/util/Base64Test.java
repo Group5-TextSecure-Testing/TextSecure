@@ -5,29 +5,34 @@ import static java.nio.charset.StandardCharsets.US_ASCII;
 import android.content.Context;
 import android.test.InstrumentationTestCase;
 import android.test.AndroidTestCase;
+import static org.junit.Assert.*;
+import org.junit.*;
 
-public final class Base64Test extends InstrumentationTestCase {
+public final class Base64Test {
 
     public void testJUnitIsActuallyDoingThings() throws Exception {
         assertEquals(0, 1);
     }
 
     // I want a source generator with an input of a three-dimensional array
-    
+
+    @Test
     public void testEncode_Empty() throws Exception {
         final byte[] src = {};
         final String expected = "";
         final String result = Base64.encodeBytes(src);
         assertEquals(expected, result);
     }
-    
+
+    @Test
     public void testDecode_Empty() throws Exception {
         final byte[] expected = {};
         final String src = "";
         final byte[] result = Base64.decode(src);
         assertEquals(expected, result);
     }
-    
+
+    @Test
     public void testDecodeArray_Empty() throws Exception {
         final byte[] expected = {};
         final byte[] src = {};
@@ -35,6 +40,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncode_0() throws Exception {
         final byte[] src = {(byte) 0};
         final String expected = "AA==";
@@ -42,6 +48,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncodeWithoutPadding_0() throws Exception {
         final byte[] src = {(byte) 0};
         final String expected = "AA";
@@ -49,6 +56,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncode_url_0() throws Exception {
         final byte[] src = {(byte) 0};
         final String expected = "AA==";
@@ -56,6 +64,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncodeWithoutPadding_url_0() throws Exception {
         final byte[] src = {(byte) 0};
         final String expected = "AA";
@@ -63,6 +72,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncode_ordered_0() throws Exception {
         final byte[] src = {(byte) 0};
         final String expected = "--==";
@@ -70,6 +80,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncodeWithoutPadding_ordred_0() throws Exception {
         final byte[] src = {(byte) 0};
         final String expected = "--";
@@ -77,6 +88,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecode_0() throws Exception {
         final byte[] expected = {(byte) 0};
         final String src = "AA==";
@@ -84,6 +96,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecode_url_0() throws Exception {
         final byte[] expected = {(byte) 0};
         final String src = "AA==";
@@ -91,6 +104,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecode_ordered_0() throws Exception {
         final byte[] expected = {(byte) 0};
         final String src = "--==";
@@ -98,6 +112,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecodeArray_0() throws Exception {
         final byte[] expected = {(byte) 0};
         final byte[] src = {(byte) 'A', (byte) 'A', (byte) '=', (byte) '='};
@@ -105,6 +120,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncode_000() throws Exception {
         final byte[] src = {(byte) 0, (byte) 0, (byte) 0};
         final String expected = "AAAA";
@@ -112,6 +128,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncodeWithoutPadding_000() throws Exception {
         final byte[] src = {(byte) 0, (byte) 0, (byte) 0};
         final String expected = "AAAA";
@@ -119,6 +136,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecode_000() throws Exception {
         final byte[] expected = {(byte) 0, (byte) 0, (byte) 0};
         final String src = "AAAA";
@@ -126,6 +144,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecodeArray_000() throws Exception {
         final byte[] expected = {(byte) 0, (byte) 0, (byte) 0};
         final byte[] src = {(byte) 'A', (byte) 'A', (byte) 'A', (byte) 'A'};
@@ -133,6 +152,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncode_0000() throws Exception {
         final byte[] src = {(byte) 0, (byte) 0, (byte) 0, (byte) 0};
         final String expected = "AAAAAA==";
@@ -140,6 +160,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecode_0000() throws Exception {
         final byte[] expected = {(byte) 0, (byte) 0, (byte) 0, (byte) 0};
         final String src = "AAAAAA==";
@@ -147,6 +168,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecodeArray_0000() throws Exception {
         final byte[] expected = {(byte) 0, (byte) 0, (byte) 0, (byte) 0};
         final byte[] src = "AAAAAA==".getBytes(US_ASCII);
@@ -154,6 +176,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncode_103() throws Exception {
         final byte[] src = {(byte) 103};
         final String expected = "Zw==";
@@ -161,6 +184,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecode_103() throws Exception {
         final byte[] expected = {(byte) 103};
         final String src = "Zw==";
@@ -168,6 +192,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncode_104() throws Exception {
         final byte[] src = {(byte) 104};
         final String expected = "aA==";
@@ -175,6 +200,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecode_104() throws Exception {
         final byte[] expected = {(byte) 104};
         final String src = "aA==";
@@ -182,6 +208,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncode_max() throws Exception {
         final byte[] src = {(byte) 255, (byte) 255, (byte) 255};
         final String expected = "////";
@@ -189,6 +216,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncode_url_max() throws Exception {
         final byte[] src = {(byte) 255, (byte) 255, (byte) 255};
         final String expected = "____";
@@ -196,6 +224,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testEncode_ordered_max() throws Exception {
         final byte[] src = {(byte) 255, (byte) 255, (byte) 255};
         final String expected = "zzzz";
@@ -203,6 +232,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecode_max() throws Exception {
         final byte[] expected = {(byte) 255, (byte) 255, (byte) 255};
         final String src = "////";
@@ -210,6 +240,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecodeArray_max() throws Exception {
         final byte[] expected = {(byte) 255, (byte) 255, (byte) 255};
         final byte[] src = "////".getBytes(US_ASCII);
@@ -217,6 +248,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecode_url_max() throws Exception {
         final byte[] expected = {(byte) 255, (byte) 255, (byte) 255};
         final String src = "____";
@@ -224,6 +256,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecode_ordered_max() throws Exception {
         final byte[] expected = {(byte) 255, (byte) 255, (byte) 255};
         final String src = "zzzz";
@@ -238,7 +271,7 @@ public final class Base64Test extends InstrumentationTestCase {
      * is lookup, they're not.
      */
 
-
+    @Test
     public void testDecode_canHandleWhitespace() throws Exception {
         final byte[] expected = {(byte) 0, (byte) 0, (byte) 0};
         final String src = "A A A A";
@@ -246,6 +279,7 @@ public final class Base64Test extends InstrumentationTestCase {
         assertEquals(expected, result);
     }
 
+    @Test
     public void testDecode_errorsOnIllegalChar() throws Exception {
     	try {
     		final byte[] result = Base64.decode("$A==");
@@ -257,6 +291,7 @@ public final class Base64Test extends InstrumentationTestCase {
     	}
     }
 
+    @Test
     public void testDecode_errorsOnIllegalChar2() throws Exception {
     	try {
     		final byte[] result = Base64.decode("AAA&");
@@ -267,7 +302,8 @@ public final class Base64Test extends InstrumentationTestCase {
     		fail("Expected IOException to be thrown; not " + e);
     	}
     }
-    
+
+    @Test
     public void testDecode_errorOnIllegalChar_url() throws Exception {
     	try {
     		final byte[] result = Base64.decode("AAA+", Base64.URL_SAFE);
@@ -278,7 +314,8 @@ public final class Base64Test extends InstrumentationTestCase {
     		fail("Expected IOException to be thrown; not " + e);
     	}
     }
-    
+
+    @Test
     public void testDecode_errorOnIllegalChar_normal() throws Exception {
     	try {
     		final byte[] result = Base64.decode("AAA_");
