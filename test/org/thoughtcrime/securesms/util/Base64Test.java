@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.util;
 
+import org.junit.Test;
+
 import java.io.IOException;
+
 import static java.nio.charset.StandardCharsets.US_ASCII;
-import android.content.Context;
-import android.test.InstrumentationTestCase;
-import android.test.AndroidTestCase;
-import static org.junit.Assert.*;
-import org.junit.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public final class Base64Test {
 
