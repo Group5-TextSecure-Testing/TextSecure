@@ -11,17 +11,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
+
+import org.junit.Test;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import static org.junit.Assert.*;
 
-public class IdentityDatabaseTest {
+public class IdentityDatabaseTest extends AndroidTestCase {
 	
 	/* There are, as far as I can tell, no implementations of this interface */
-	/*private CursorFactory cursorFactory = null;
-	
+	private CursorFactory cursorFactory = null;
+
 	public IdentityDatabase getDatabaseInstance() {
 		return new IdentityDatabase(this.getContext(), new DatabaseHelper(this.getContext(), "test.Identity", cursorFactory, 0));
 	}
@@ -35,13 +36,15 @@ public class IdentityDatabaseTest {
 				new SecretKeySpec(sha1Bytes, "HmacSHA1")
 		);
 	}
-	
+
+    @Test
 	public void testNewDatabaseIsEmpty() throws Exception {
 		final IdentityDatabase d = this.getDatabaseInstance();
 		final Cursor c = d.getIdentities();
 		assertEquals(0, c.getCount());
 	}
-	
+
+    @Test
 	public void testOneElementDatabase_Count() throws Exception {
 		final IdentityKey key = new IdentityKey(new MyKey((byte) 42));
 		final int id = 35709;
@@ -50,7 +53,8 @@ public class IdentityDatabaseTest {
 		final Cursor c = d.getIdentities();
 		assertEquals(1, c.getCount());
 	}
-	
+
+    @Test
 	public void testOneElementDatabase_Key() throws Exception {
 		final IdentityKey key = new IdentityKey(new MyKey((byte) 42));
 		final MasterSecret secret = this.getMasterSecret();
@@ -66,7 +70,7 @@ public class IdentityDatabaseTest {
 	// I see nowhere to set Recipients
 	
 	
-	
+
 	public class MyKey implements ECPublicKey {
 		final byte value;
 		public MyKey(byte value) {
@@ -74,7 +78,6 @@ public class IdentityDatabaseTest {
 		}
 		
 		/** I have no idea what this means */
-    /*
 		@Override
 		public int getType() {return 0;}
 		
@@ -113,5 +116,5 @@ public class IdentityDatabaseTest {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		}
-	}*/
+	}
 }
