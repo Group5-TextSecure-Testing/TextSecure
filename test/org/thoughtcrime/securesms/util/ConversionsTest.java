@@ -160,45 +160,45 @@ public final class ConversionsTest {
     @Test
 	public void shortToByteArray_0() throws Exception {
 		final byte[] expected = {(byte) 0, (byte) 0};
-		assertEquals(expected, Conversions.shortToByteArray((short) 0));
+		assertArrayEquals(expected, Conversions.shortToByteArray((short) 0));
 	}
 
     @Test
     public void shortToByteArray_255() throws Exception {
 		final byte[] expected = {(byte) 0, (byte) 255};
-		assertEquals(expected, Conversions.shortToByteArray((short) 255));
+		assertArrayEquals(expected, Conversions.shortToByteArray((short) 255));
 	}
 
     @Test
 	public void shortToByteArray_256() throws Exception {
 		final byte[] expected = {(byte) 1, (byte) 0};
-		assertEquals(expected, Conversions.shortToByteArray((short) 256));
+		assertArrayEquals(expected, Conversions.shortToByteArray((short) 256));
 	}
 
     @Test
 	public void shortToByteArray_xFFFF() throws Exception {
 		final byte[] expected = {(byte) 255, (byte) 255};
-		assertEquals(expected, Conversions.shortToByteArray((short) 0xFFFF));
+		assertArrayEquals(expected, Conversions.shortToByteArray((short) 0xFFFF));
 	}
 
     @Test
 	public void shortToByteArray_x4567() throws Exception {
 		final byte[] expected = {(byte) 0x45, (byte) 0x67};
-		assertEquals(expected, Conversions.shortToByteArray((short) 0x4567));
+		assertArrayEquals(expected, Conversions.shortToByteArray((short) 0x4567));
 	}
 
     @Test
 	public void shortToByteArray_x10000() throws Exception {
 		// NOTE: the fact that this compiles at all is a bug
 		final byte[] expected = {(byte) 0x00, (byte) 0x00};
-		assertEquals(expected, Conversions.shortToByteArray(0x10000));
+		assertArrayEquals(expected, Conversions.shortToByteArray(0x10000));
 	}
 	
 	@Test
 	public void shortToLittleEndianByteArray_x4567() throws Exception {
 		final byte[] expected = {(byte) 0x67, (byte) 0x45};
 		final byte[] bytes = new byte[2];
-		assertEquals(expected, Conversions.shortToLittleEndianByteArray(bytes, 0, (short) 0x4567));
+		assertArrayEquals(expected, Conversions.shortToLittleEndianByteArray(bytes, 0, (short) 0x4567));
 	}
 	
 	
@@ -209,21 +209,21 @@ public final class ConversionsTest {
 		final byte[] bytes = new byte[5];
 		final byte[] expected = {(byte) 0x45, (byte) 0x67, (byte) 0, (byte) 0, (byte) 0};
 		Conversions.shortToByteArray(bytes, 0, (short) 0x4567);
-		assertEquals(expected, bytes);
+		assertArrayEquals(expected, bytes);
 	}
 	@Test
 	public void shortToByteArray_off1() throws Exception {
 		final byte[] bytes = new byte[5];
 		final byte[] expected = {(byte) 0, (byte) 0x45, (byte) 0x67, (byte) 0, (byte) 0};
 		Conversions.shortToByteArray(bytes, 1, (short) 0x4567);
-		assertEquals(expected, bytes);
+		assertArrayEquals(expected, bytes);
 	}
 	@Test
 	public void shortToByteArray_offMax() throws Exception {
 		final byte[] bytes = new byte[5];
 		final byte[] expected = {(byte) 0, (byte) 0, (byte) 0, (byte) 0x45, (byte) 0x67};
 		Conversions.shortToByteArray(bytes, 3, (short) 0x4567);
-		assertEquals(expected, bytes);
+		assertArrayEquals(expected, bytes);
 	}
 	@Test
 	public void shortToByteArray_offOver() throws Exception {
@@ -261,22 +261,22 @@ public final class ConversionsTest {
 	@Test
 	public void intToByteArray_0() throws Exception {
 		final byte[] expected = {(byte) 0,(byte) 0,(byte) 0,(byte) 0};
-		assertEquals(expected, Conversions.intToByteArray(0));
+		assertArrayEquals(expected, Conversions.intToByteArray(0));
 	}
 	@Test
 	public void intToByteArray_max() throws Exception {
 		final byte[] expected = {(byte) 255,(byte) 255,(byte) 255,(byte) 255};
-		assertEquals(expected, Conversions.intToByteArray(-1));
+		assertArrayEquals(expected, Conversions.intToByteArray(-1));
 	}
 	@Test
 	public void intToByteArray_mid() throws Exception {
 		final byte[] expected = {(byte) 0x12, (byte) 0x34, (byte) 0x56,(byte) 0x78};
-		assertEquals(expected, Conversions.intToByteArray(0x12345678));
+		assertArrayEquals(expected, Conversions.intToByteArray(0x12345678));
 	}
 	@Test
 	public void intToLittleEndianByteArray_mid() throws Exception {
 		final byte[] expected = {(byte) 0x78, (byte) 0x56, (byte) 0x34,(byte) 0x12};
-		assertEquals(expected, Conversions.intToByteArray(0x12345678));
+		assertArrayEquals(expected, Conversions.intToLittleEndianByteArray(0x12345678));
 	}
 	
 	@Test
@@ -284,21 +284,21 @@ public final class ConversionsTest {
 		final byte[] bytes = new byte[10];
 		final byte[] expected = {(byte) 0x12, (byte) 0x34, (byte) 0x56, (byte) 0x78, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0};
 		Conversions.intToByteArray(bytes, 0, 0x12345678);
-		assertEquals(expected, bytes);
+		assertArrayEquals(expected, bytes);
 	}
 	@Test
 	public void intToByteArray_off3() throws Exception {
 		final byte[] bytes = new byte[10];
 		final byte[] expected = {(byte) 0, (byte) 0, (byte) 0, (byte) 0x12, (byte) 0x34, (byte) 0x56, (byte) 0x78, (byte) 0, (byte) 0, (byte) 0};
 		Conversions.intToByteArray(bytes, 3, 0x12345678);
-		assertEquals(expected, bytes);
+		assertArrayEquals(expected, bytes);
 	}
 	@Test
 	public void intToByteArray_offMax() throws Exception {
 		final byte[] bytes = new byte[10];
 		final byte[] expected = {(byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0x12, (byte) 0x34, (byte) 0x56, (byte) 0x78};
 		Conversions.intToByteArray(bytes, 6, 0x12345678);
-		assertEquals(expected, bytes);
+		assertArrayEquals(expected, bytes);
 	}
 	@Test
 	public void intToByteArray_offOver() throws Exception {
@@ -338,22 +338,17 @@ public final class ConversionsTest {
 	@Test
 	public void longToByteArray_0() throws Exception {
 		final byte[] expected = {(byte) 0,(byte) 0,(byte) 0,(byte) 0,(byte) 0,(byte) 0,(byte) 0,(byte) 0};
-		assertEquals(expected, Conversions.longToByteArray(0));
+		assertArrayEquals(expected, Conversions.longToByteArray(0));
 	}
 	@Test
 	public void longToByteArray_max() throws Exception {
 		final byte[] expected = {(byte) 255,(byte) 255,(byte) 255,(byte) 255,(byte) 255,(byte) 255,(byte) 255,(byte) 255};
-		assertEquals(expected, Conversions.longToByteArray(-1l));
+		assertArrayEquals(expected, Conversions.longToByteArray(-1l));
 	}
 	@Test
 	public void longToByteArray_mid() throws Exception {
 		final byte[] expected = {(byte) 0x12, (byte) 0x34, (byte) 0x56,(byte) 0x78,(byte) 0x90,(byte) 0xAB,(byte) 0xCD,(byte) 0xEF};
-		assertEquals(expected, Conversions.longToByteArray(0x1234567890ABCDEFl));
-	}
-	@Test
-	public void longToLittleEndianByteArray_mid() throws Exception {
-		final byte[] expected = {(byte) 0xEF, (byte) 0xCD, (byte) 0xAB, (byte) 0x90, 78, (byte) 0x56, (byte) 0x34,(byte) 0x12};
-		assertEquals(expected, Conversions.longToByteArray(0x1234567890ABCDEFl));
+		assertArrayEquals(expected, Conversions.longToByteArray(0x1234567890ABCDEFl));
 	}
 	
 	@Test
@@ -361,21 +356,21 @@ public final class ConversionsTest {
 		final byte[] bytes = new byte[16];
 		final byte[] expected = {(byte) 0x12, (byte) 0x34, (byte) 0x56,(byte) 0x78,(byte) 0x90,(byte) 0xAB,(byte) 0xCD,(byte) 0xEF, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0};
 		Conversions.longToByteArray(bytes, 0, 0x1234567890ABCDEFl);
-		assertEquals(expected, bytes);
+		assertArrayEquals(expected, bytes);
 	}
 	@Test
 	public void longToByteArray_off3() throws Exception {
 		final byte[] bytes = new byte[16];
 		final byte[] expected = { (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0,(byte) 0x12, (byte) 0x34, (byte) 0x56,(byte) 0x78,(byte) 0x90,(byte) 0xAB,(byte) 0xCD,(byte) 0xEF};
 		Conversions.longToByteArray(bytes, 8, 0x1234567890ABCDEFl);
-		assertEquals(expected, bytes);
+		assertArrayEquals(expected, bytes);
 	}
 	@Test
 	public void longToByteArray_offMax() throws Exception {
 		final byte[] bytes = new byte[16];
 		final byte[] expected = {(byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0x12, (byte) 0x34, (byte) 0x56, (byte) 0x78,(byte) 0x90,(byte) 0xAB,(byte) 0xCD,(byte) 0xEF, (byte)0, (byte)0};
 		Conversions.longToByteArray(bytes, 6, 0x1234567890ABCDEFl);
-		assertEquals(expected, bytes);
+		assertArrayEquals(expected, bytes);
 	}
 	@Test
 	public void longToByteArray_offOver() throws Exception {
@@ -425,26 +420,21 @@ public final class ConversionsTest {
 		final byte[] inputs = {(byte) 0x12, (byte) 0x34};
 		assertEquals(0x1234, Conversions.byteArrayToShort(inputs));
 	}
-	@Test
-	public void shortToLittleEndianByteArray_mid() throws Exception {
-		final byte[] inputs = {(byte) 0x34,(byte) 0x12};
-		assertEquals(0x1234, Conversions.byteArrayToShort(inputs));
-	}
 	
 	@Test
 	public void byteArrayToShort_off0() throws Exception {
-		final byte[] inputs = {(byte) 0x12, (byte) 0, (byte) 0,(byte) 0x78,(byte) 0,(byte) 0,(byte) 0,(byte) 0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0};
+		final byte[] inputs = {(byte) 0x12, (byte) 0x34, (byte) 0, (byte) 0,(byte) 0x78,(byte) 0,(byte) 0,(byte) 0,(byte) 0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0};
 		assertEquals(0x1234, Conversions.byteArrayToShort(inputs, 0));
 	}
 	@Test
-	public void byteArrayToShort_off3() throws Exception {
-		final byte[] inputs = { (byte)0,(byte) 0,(byte) 0,(byte) 0,(byte) 0,(byte) 0,(byte) 0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0,(byte) 0x12, (byte) 0x34};
-		assertEquals(0x1234, Conversions.byteArrayToShort(inputs, 12));
+	public void byteArrayToShort_off6() throws Exception {
+		final byte[] inputs = {(byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0x12, (byte) 0x34, (byte) 0x56, (byte) 0x78,(byte) 0,(byte) 0,(byte) 0,(byte) 0, (byte)0, (byte)0};
+		assertEquals(0x1234, Conversions.byteArrayToShort(inputs, 6));
 	}
 	@Test
 	public void byteArrayToShort_offMax() throws Exception {
-		final byte[] inputs = {(byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0x12, (byte) 0x34, (byte) 0x56, (byte) 0x78,(byte) 0,(byte) 0,(byte) 0,(byte) 0, (byte)0, (byte)0};
-		assertEquals(0x1234, Conversions.byteArrayToShort(inputs, 6));
+		final byte[] inputs = { (byte)0,(byte) 0,(byte) 0,(byte) 0,(byte) 0,(byte) 0,(byte) 0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0,(byte) 0x12, (byte) 0x34};
+		assertEquals(0x1234, Conversions.byteArrayToShort(inputs, 14));
 	}
 	@Test
 	public void byteArrayToShort_offOver() throws Exception {
