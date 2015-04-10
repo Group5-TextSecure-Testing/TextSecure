@@ -198,7 +198,8 @@ public final class ConversionsTest {
 	public void shortToLittleEndianByteArray_x4567() throws Exception {
 		final byte[] expected = {(byte) 0x67, (byte) 0x45};
 		final byte[] bytes = new byte[2];
-		assertArrayEquals(expected, Conversions.shortToLittleEndianByteArray(bytes, 0, (short) 0x4567));
+		Conversions.shortToLittleEndianByteArray(bytes, 0, (short) 0x4567);
+		assertArrayEquals(expected, bytes);
 	}
 	
 	
@@ -276,7 +277,9 @@ public final class ConversionsTest {
 	@Test
 	public void intToLittleEndianByteArray_mid() throws Exception {
 		final byte[] expected = {(byte) 0x78, (byte) 0x56, (byte) 0x34,(byte) 0x12};
-		assertArrayEquals(expected, Conversions.intToLittleEndianByteArray(0x12345678));
+		final byte[] bytes = new byte[4];
+		Conversions.intToLittleEndianByteArray(bytes, 0, 0x12345678);
+		assertArrayEquals(expected, bytes);
 	}
 	
 	@Test
@@ -589,6 +592,70 @@ public final class ConversionsTest {
 		final byte[] bytes = new byte[7];
 		try {
 			Conversions.byteArrayToLong(bytes, 0);
+			fail("IndexOutOfBoundsException exception to be thrown");
+		} catch (IndexOutOfBoundsException e) {
+			// success
+		}
+	}
+	
+/***** byteArrayToMedium */
+	
+	@Test
+	public void byteArrayToMedium_0() throws Exception {
+		final byte[] inputs = {(byte) 0,(byte) 0,(byte) 0};
+		assertEquals(0, Conversions.byteArrayToMedium(inputs, 0));
+	}
+	@Test
+	public void byteArrayToMedium_max() throws Exception {
+		final byte[] inputs = {(byte) 255,(byte) 255,(byte) 255};
+		assertEquals(0xFFFFFF, Conversions.byteArrayToMedium(inputs, 0));
+	}
+	@Test
+	public void byteArrayToMedium_mid() throws Exception {
+		final byte[] inputs = {(byte) 0x12, (byte) 0x34, (byte) 0x56};
+		assertEquals(0x123456, Conversions.byteArrayToMedium(inputs, 0));
+	}
+	
+	@Test
+	public void byteArrayToMedium_off0() throws Exception {
+		final byte[] inputs = {(byte) 0x12, (byte) 0x34, (byte) 0x56,(byte) 0,(byte) 0,(byte) 0,(byte) 0,(byte) 0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0};
+		assertEquals(0x123456, Conversions.byteArrayToMedium(inputs, 0));
+	}
+	@Test
+	public void byteArrayToMedium_off3() throws Exception {
+		final byte[] inputs = { (byte)0, (byte)0, (byte)0, (byte)0x12, (byte)0x34, (byte)0x56, (byte)0, (byte)0,(byte) 0, (byte) 0, (byte) 0,(byte) 0,(byte) 0,(byte) 0,(byte) 0,(byte) 0};
+		assertEquals(0x123456, Conversions.byteArrayToMedium(inputs, 3));
+	}
+	@Test
+	public void byteArrayToMedium_offMax() throws Exception {
+		final byte[] inputs = {(byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0,(byte) 0,(byte) 0,(byte) 0,(byte) 0x12, (byte)0x34, (byte)0x56};
+		assertEquals(0x123456, Conversions.byteArrayToMedium(inputs, 13));
+	}
+	@Test
+	public void byteArrayToMedium_offOver() throws Exception {
+		final byte[] inputs = new byte[16];
+		try {
+			Conversions.byteArrayToMedium(inputs, 14);
+			fail("IndexOutOfBoundsException exception to be thrown");
+		} catch (IndexOutOfBoundsException e) {
+			// success
+		}
+	}
+	@Test
+	public void byteArrayToMedium_offUnder() throws Exception {
+		final byte[] inputs = new byte[16];
+		try {
+			Conversions.byteArrayToMedium(inputs, -1);
+			fail("IndexOutOfBoundsException exception to be thrown");
+		} catch (IndexOutOfBoundsException e) {
+			// success
+		}
+	}
+	@Test
+	public void byteArrayToMedium_smallArray() throws Exception {
+		final byte[] bytes = new byte[2];
+		try {
+			Conversions.byteArrayToMedium(bytes, 0);
 			fail("IndexOutOfBoundsException exception to be thrown");
 		} catch (IndexOutOfBoundsException e) {
 			// success
