@@ -79,22 +79,17 @@ public final class ConversionsTest {
 
     @Test
     public void lowBitsToMedium_255() throws Exception {
-        assertEquals(0, Conversions.lowBitsToMedium(255));
+        assertEquals(255, Conversions.lowBitsToMedium(255));
     }
 
     @Test
     public void lowBitsToMedium_256() throws Exception {
-        assertEquals(1, Conversions.lowBitsToMedium(256));
+        assertEquals(256, Conversions.lowBitsToMedium(256));
     }
 
     @Test
     public void lowBitsToMedium_xFFF() throws Exception {
-        assertEquals(15, Conversions.lowBitsToMedium(0xFFF));
-    }
-
-    @Test
-    public void lowBitsToMedium_x417() throws Exception {
-        assertEquals(4, Conversions.lowBitsToMedium(0x417));
+        assertEquals(0xFFF, Conversions.lowBitsToMedium(0xFFF));
     }
 
     @Test
@@ -104,12 +99,54 @@ public final class ConversionsTest {
 
     @Test
     public void lowBitsToMedium_x1A53() throws Exception {
-        assertEquals(0xA, Conversions.lowBitsToMedium(0x1A53));
+        assertEquals(0xA53, Conversions.lowBitsToMedium(0x1A53));
     }
 
     @Test
     public void lowBitsToMedium_neg1() throws Exception {
-        assertEquals(15, Conversions.lowBitsToMedium(-1));
+        assertEquals(0xFFF, Conversions.lowBitsToMedium(-1));
+    }
+    
+/***** highBitsToMedium */
+
+    @Test
+	public void highBitsToMedium_0() throws Exception {
+        assertEquals(0, Conversions.highBitsToMedium(0));
+    }
+
+    @Test
+    public void highBitsToMedium_xFFF() throws Exception {
+        assertEquals(0, Conversions.highBitsToMedium(0xFFF));
+    }
+
+    @Test
+    public void highBitsToMedium_x1000() throws Exception {
+        assertEquals(1, Conversions.highBitsToMedium(0x1000));
+    }
+
+    @Test
+    public void highBitsToMedium_x134A53() throws Exception {
+        assertEquals(0x134, Conversions.highBitsToMedium(0x134A53));
+    }
+
+    @Test
+    public void highBitsToMedium_xFFFFFF() throws Exception {
+        assertEquals(0xFFF, Conversions.highBitsToMedium(0xFFFFFF));
+    }
+
+    @Test
+    public void highBitsToMedium_x1000000() throws Exception {
+        assertEquals(0x0, Conversions.highBitsToMedium(0x1000000));
+    }
+
+    @Test
+    public void highBitsToMedium_x12345678() throws Exception {
+        assertEquals(0x345, Conversions.highBitsToMedium(0x12345678));
+    }
+
+    @Test
+    public void highBitsToMedium_neg1() throws Exception {
+        assertEquals(0xFFF, Conversions.highBitsToMedium(-1));
     }
 	
 /***** intsToByteHighAndLow */
@@ -136,7 +173,7 @@ public final class ConversionsTest {
 
     @Test
     public void intsToByteHighAndLow_F_F() throws Exception {
-		assertEquals(0xFF, Conversions.intsToByteHighAndLow(15,15));
+		assertEquals((byte) 0xFF, Conversions.intsToByteHighAndLow(15,15));
 	}
 
     @Test
@@ -151,7 +188,7 @@ public final class ConversionsTest {
 
     @Test
 	public void intsToByteHighAndLow_neg1_neg1() throws Exception {
-		assertEquals(0xFF, Conversions.intsToByteHighAndLow(-1,-1));
+		assertEquals((byte) 0xFF, Conversions.intsToByteHighAndLow(-1,-1));
 	}
 	
 	
