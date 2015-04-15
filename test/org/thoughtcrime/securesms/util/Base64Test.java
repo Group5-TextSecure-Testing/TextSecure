@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import static java.nio.charset.StandardCharsets.US_ASCII;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
 
 public final class Base64Test {
@@ -29,7 +30,7 @@ public final class Base64Test {
         final byte[] expected = {};
         final String src = "";
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -37,7 +38,7 @@ public final class Base64Test {
         final byte[] expected = {};
         final byte[] src = {};
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -81,19 +82,11 @@ public final class Base64Test {
     }
 
     @Test
-    public void testEncodeWithoutPadding_ordred_0() throws Exception {
-        final byte[] src = {(byte) 0};
-        final String expected = "--";
-        final String result = Base64.encodeBytesWithoutPadding(src);
-        assertEquals(expected, result);
-    }
-
-    @Test
     public void testDecode_0() throws Exception {
         final byte[] expected = {(byte) 0};
         final String src = "AA==";
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -101,7 +94,7 @@ public final class Base64Test {
         final byte[] expected = {(byte) 0};
         final String src = "AA==";
         final byte[] result = Base64.decode(src, Base64.URL_SAFE);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -109,7 +102,7 @@ public final class Base64Test {
         final byte[] expected = {(byte) 0};
         final String src = "--==";
         final byte[] result = Base64.decode(src, Base64.ORDERED);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -117,7 +110,7 @@ public final class Base64Test {
         final byte[] expected = {(byte) 0};
         final byte[] src = {(byte) 'A', (byte) 'A', (byte) '=', (byte) '='};
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -141,7 +134,7 @@ public final class Base64Test {
         final byte[] expected = {(byte) 0, (byte) 0, (byte) 0};
         final String src = "AAAA";
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -149,7 +142,7 @@ public final class Base64Test {
         final byte[] expected = {(byte) 0, (byte) 0, (byte) 0};
         final byte[] src = {(byte) 'A', (byte) 'A', (byte) 'A', (byte) 'A'};
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -165,7 +158,7 @@ public final class Base64Test {
         final byte[] expected = {(byte) 0, (byte) 0, (byte) 0, (byte) 0};
         final String src = "AAAAAA==";
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -173,7 +166,7 @@ public final class Base64Test {
         final byte[] expected = {(byte) 0, (byte) 0, (byte) 0, (byte) 0};
         final byte[] src = "AAAAAA==".getBytes(US_ASCII);
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -189,7 +182,7 @@ public final class Base64Test {
         final byte[] expected = {(byte) 103};
         final String src = "Zw==";
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -205,7 +198,8 @@ public final class Base64Test {
         final byte[] expected = {(byte) 104};
         final String src = "aA==";
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        System.out.println(result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -237,7 +231,7 @@ public final class Base64Test {
         final byte[] expected = {(byte) 255, (byte) 255, (byte) 255};
         final String src = "////";
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -245,7 +239,7 @@ public final class Base64Test {
         final byte[] expected = {(byte) 255, (byte) 255, (byte) 255};
         final byte[] src = "////".getBytes(US_ASCII);
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -253,7 +247,7 @@ public final class Base64Test {
         final byte[] expected = {(byte) 255, (byte) 255, (byte) 255};
         final String src = "____";
         final byte[] result = Base64.decode(src, Base64.URL_SAFE);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -261,10 +255,10 @@ public final class Base64Test {
         final byte[] expected = {(byte) 255, (byte) 255, (byte) 255};
         final String src = "zzzz";
         final byte[] result = Base64.decode(src, Base64.ORDERED);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
-    /**
+    /*
      * Since this is white box, and I know that this class does everything
      * via lookup tables, so even though black-box makes it seem like [A-Z]
      * [a-z], [0-9], +, and / are different equivalence cases, since everything
@@ -276,7 +270,7 @@ public final class Base64Test {
         final byte[] expected = {(byte) 0, (byte) 0, (byte) 0};
         final String src = "A A A A";
         final byte[] result = Base64.decode(src);
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test

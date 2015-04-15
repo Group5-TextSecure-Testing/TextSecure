@@ -233,3 +233,5 @@ if (propFile.canRead()){
     println 'signing.properties not found'
     android.buildTypes.release.signingConfig = null
 }
+
+android.testOptions.unitTests.returnDefaultValues = true
