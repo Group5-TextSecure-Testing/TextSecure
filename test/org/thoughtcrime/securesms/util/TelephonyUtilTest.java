@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class BitmapDecodingExceptionTest {
+public class TelephonyUtilTest {
 
 	@Test
 	public void test() {

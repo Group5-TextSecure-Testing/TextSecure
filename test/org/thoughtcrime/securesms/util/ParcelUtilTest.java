@@ -1,9 +1,17 @@
+/**
+ * 
+ */
+package org.thoughtcrime.securesms.util;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-package org.thoughtcrime.securesms.util.deque;
 
-public class DequeTest {
+/**
+ * @author jordj
+ *
+ */
+public class ParcelUtilTest {
 
 	@Test
 	public void test() {

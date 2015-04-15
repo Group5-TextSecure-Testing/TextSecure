@@ -1,9 +1,10 @@
-import static org.junit.Assert.*;
 package org.thoughtcrime.securesms.util;
+
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 
-
-public class RedPhoneCallTypeTest {
+public class DynamicThemeTest {
 
 	@Test
 	public void test() {

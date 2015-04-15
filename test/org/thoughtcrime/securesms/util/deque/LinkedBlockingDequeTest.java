@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.util;
+package org.thoughtcrime.securesms.util.deque;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class BitmapDecodingExceptionTest {
+public class LinkedBlockingDequeTest {
 
 	@Test
 	public void test() {
