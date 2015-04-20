@@ -9,7 +9,7 @@ public class LinkedBlockingDequeTest {
 	@Test
 	public void testConstructWithCap() throws Exception {
 		final LinkedBlockingDeque<String> tester = new LinkedBlockingDeque<String>(20);
-		assertEquals(20,tester.getCapacity());
+		assertEquals(20,tester.remainingCapacity());
 	}
 
 }
