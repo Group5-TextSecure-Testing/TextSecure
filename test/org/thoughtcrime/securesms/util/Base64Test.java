@@ -11,10 +11,6 @@ import static org.junit.Assert.fail;
 
 public final class Base64Test {
 
-    public void testJUnitIsActuallyDoingThings() throws Exception {
-        assertEquals(0, 1);
-    }
-
     // I want a source generator with an input of a three-dimensional array
 
     @Test

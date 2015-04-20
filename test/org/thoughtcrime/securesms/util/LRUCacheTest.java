@@ -112,4 +112,15 @@ public final class LRUCacheTest {
 		assertFalse(dut.containsKey("000"));
 		assertFalse(dut.containsKey("111"));
 	}
+	
+	
+	@Test
+	public void add_0_maxNeg1() throws Exception {
+		try {
+			final LRUCache<String, String> dut = new LRUCache<String, String>(-1);
+			fail("Did not throw exception upon recieving negative capacity");
+		} catch (IllegalArgumentException e) {
+			// success
+		}
+	}
 }
