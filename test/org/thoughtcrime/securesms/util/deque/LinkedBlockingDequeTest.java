@@ -2,9 +2,11 @@ package org.thoughtcrime.securesms.util.deque;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
+
 
 public class LinkedBlockingDequeTest {
 
@@ -35,5 +37,45 @@ public class LinkedBlockingDequeTest {
 		assertEquals(19,Deque1.remainingCapacity());
 		assertEquals(19,Deque2.remainingCapacity());
 	}
+	
+	@Test
+	/**
+	 * Method to check if the current deque contains a specificobject
+	 * @throws Exception
+	 */
+	public void testContainsMethod() throws Exception{
+		final LinkedBlockingDeque<String> Deque = new LinkedBlockingDeque<String>(20);
+		final String stringOfStuff = "Hello I'm a String";
+		Deque.offerFirst(stringOfStuff);
+		boolean hasTo = true;
+		
+		assertEquals(hasTo, Deque.contains(stringOfStuff));
+		
+	}
 
+	@Test
+	/**
+	 * Method converts Deque to an Array, then checks if the First and Last elements match
+	 * @throws Exception
+	 */
+	public void testFirstAndLast() throws Exception{
+		final LinkedBlockingDeque<String> Deque = new LinkedBlockingDeque<String>(20);
+		final String Joe = "Joe";
+		final String Bob = "Bob";
+		final String Mary = "Mary";
+		final String Sue = "Sue";
+		Deque.add(Joe);
+		Deque.add(Bob);
+		Deque.add(Sue);
+		Deque.add(Mary);
+		
+		final Object[] names = Deque.toArray();
+		
+		assertEquals(names[0], Deque.getFirst());
+		assertEquals(names[-1], Deque.getLast());
+		
+		assertEquals(Joe, Deque.getFirst());
+		assertEquals(Mary, Deque.getLast());
+	}
+	
 }
