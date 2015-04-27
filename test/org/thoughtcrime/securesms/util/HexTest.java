@@ -79,11 +79,6 @@ public class HexTest {
 
     @Test
     public void testDump() throws Exception {
-
-    }
-
-    @Test
-    public void testDump1() throws Exception {
-
+        fail("Unit test not implemented!");
     }
 }
