@@ -186,17 +186,29 @@ public class UtilTest {
 
     @Test
     public void testSplit1() throws Exception {
-
+        //@TODO
     }
 
     @Test
     public void testCombine() throws Exception {
-
+        String str1 = "123";
+        String str2 = "abc";
+        String result = "123abc";
+        assertArrayEquals(result.getBytes(), Util.combine(str1.getBytes(), str2.getBytes()));
     }
 
     @Test
     public void testTrim() throws Exception {
+        assertArrayEquals(" a".getBytes(), Util.trim(" asd ".getBytes(),2));
+        assertArrayEquals(" ".getBytes(), Util.trim(" asd ".getBytes(),1));
+        assertArrayEquals("".getBytes(), Util.trim(" asd ".getBytes(),0));
+        assertArrayEquals(" asd ".getBytes(), Util.trim(" asd ".getBytes(),5));
+        try {
+            assertArrayEquals(" asd ".getBytes(), Util.trim(" asd ".getBytes(), 6));
+            fail("IndexOutOfBoundsException not found when it should have been found.");
+        } catch ( IndexOutOfBoundsException e) {
 
+        }
     }
 
     @Test
@@ -211,17 +223,17 @@ public class UtilTest {
 
     @Test
     public void testGetSecret() throws Exception {
-
+        //Not sure how to test this, since get secret appears to return random data
     }
 
     @Test
     public void testGetSecretBytes() throws Exception {
-
+        //Not sure how to test this, since get secret appears to return random data
     }
 
     @Test
     public void testGetSecureRandom() throws Exception {
-
+        //Not sure how to test this, since this just returns a PRNG
     }
 
     @Test
