@@ -8,7 +8,7 @@ public final class EncryptedSmsCharacterCalculatorTest {
 	public static final int SINGLE_DATA_SIZE = 63; //SmsTransportDetails.ENCRYPTED_SINGLE_MESSAGE_BODY_MAX_SIZE;
 	public static final int MULTIPART_DATA_SIZE = 114; //SmsTransportDetails.MULTI_MESSAGE_MAX_BYTES;
 	
-	
+/*
 	@Test
 	public void calculateCharacters_neg1() {
 		final EncryptedSmsCharacterCalculator dut = new EncryptedSmsCharacterCalculator();
@@ -120,4 +120,5 @@ public final class EncryptedSmsCharacterCalculatorTest {
 		assertEquals(19, result.charactersRemaining);
 		assertEquals(MULTIPART_DATA_SIZE, result.maxMessageSize);
 	}
+	*/
 }
