@@ -263,7 +263,8 @@ public class Emoji {
   }
 
   public Pair<Integer, Drawable> getRecentlyUsed(int position, double size, PageLoadedListener pageLoadedListener) {
-    String code = EmojiLRU.getRecentlyUsed(context)[position];
+    String[] recentlyUsed = EmojiLRU.getRecentlyUsed(context);
+    String   code         = recentlyUsed[recentlyUsed.length - 1 - position];
     return new Pair<Integer, Drawable>(Integer.parseInt(code, 16), getEmojiDrawable(code, size, pageLoadedListener));
   }
 
@@ -311,8 +312,6 @@ public class Emoji {
         Log.w(TAG, e);
         recentlyUsed = new LinkedHashSet<>();
       }
-
-      recentlyUsed = new LinkedHashSet<>();
     }
 
     public static String[] getRecentlyUsed(Context context) {
@@ -331,6 +330,7 @@ public class Emoji {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
       }
 
+      recentlyUsed.remove(asset);
       recentlyUsed.add(asset);
 
       if (recentlyUsed.size() > EMOJI_LRU_SIZE) {

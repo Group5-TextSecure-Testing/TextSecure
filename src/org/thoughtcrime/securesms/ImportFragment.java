@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.AlertDialogWrapper;
+
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptedBackupExporter;
@@ -21,8 +23,6 @@ import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.PlaintextBackupImporter;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.io.IOException;
 
@@ -82,8 +82,8 @@ public class ImportFragment extends Fragment {
   }
 
   private void handleImportSms() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setIcon(ResUtil.getDrawable(getActivity(), R.attr.dialog_info_icon));
+    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+    builder.setIconAttribute(R.attr.dialog_info_icon);
     builder.setTitle(getActivity().getString(R.string.ImportFragment_import_system_sms_database));
     builder.setMessage(getActivity().getString(R.string.ImportFragment_this_will_import_messages_from_the_system));
     builder.setPositiveButton(getActivity().getString(R.string.ImportFragment_import), new AlertDialog.OnClickListener() {
@@ -95,10 +95,8 @@ public class ImportFragment extends Fragment {
         getActivity().startService(intent);
 
         Intent nextIntent = new Intent(getActivity(), ConversationListActivity.class);
-        intent.putExtra("master_secret", masterSecret);
 
         Intent activityIntent = new Intent(getActivity(), DatabaseMigrationActivity.class);
-        activityIntent.putExtra("master_secret", masterSecret);
         activityIntent.putExtra("next_intent", nextIntent);
         getActivity().startActivity(activityIntent);
       }
@@ -108,8 +106,8 @@ public class ImportFragment extends Fragment {
   }
 
   private void handleImportEncryptedBackup() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setIcon(ResUtil.getDrawable(getActivity(), R.attr.dialog_alert_icon));
+    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+    builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setTitle(getActivity().getString(R.string.ImportFragment_restore_encrypted_backup));
     builder.setMessage(getActivity().getString(R.string.ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys));
     builder.setPositiveButton(getActivity().getString(R.string.ImportFragment_restore), new AlertDialog.OnClickListener() {
@@ -123,8 +121,8 @@ public class ImportFragment extends Fragment {
   }
 
   private void handleImportPlaintextBackup() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setIcon(ResUtil.getDrawable(getActivity(), R.attr.dialog_alert_icon));
+    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+    builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setTitle(getActivity().getString(R.string.ImportFragment_import_plaintext_backup));
     builder.setMessage(getActivity().getString(R.string.ImportFragment_this_will_import_messages_from_a_plaintext_backup));
     builder.setPositiveButton(getActivity().getString(R.string.ImportFragment_import), new AlertDialog.OnClickListener() {

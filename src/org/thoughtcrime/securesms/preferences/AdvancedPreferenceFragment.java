@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.preferences;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +13,7 @@ import android.support.v4.preference.PreferenceFragment;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -22,9 +22,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RegistrationActivity;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
-import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
@@ -40,9 +40,12 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
 
   private static final int PICK_IDENTITY_CONTACT = 1;
 
+  private MasterSecret masterSecret;
+
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
+    masterSecret = getArguments().getParcelable("master_secret");
     addPreferencesFromResource(R.xml.preferences_advanced);
 
     initializePushMessagingToggle();
@@ -173,8 +176,8 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
     @Override
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
       if (((CheckBoxPreference)preference).isChecked()) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setIcon(ResUtil.getDrawable(getActivity(), R.attr.dialog_info_icon));
+        AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+        builder.setIconAttribute(R.attr.dialog_info_icon);
         builder.setTitle(R.string.ApplicationPreferencesActivity_disable_push_messages);
         builder.setMessage(R.string.ApplicationPreferencesActivity_this_will_disable_push_messages);
         builder.setNegativeButton(android.R.string.cancel, null);
@@ -187,12 +190,11 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
         builder.show();
       } else {
         Intent nextIntent = new Intent(getActivity(), ApplicationPreferencesActivity.class);
-        nextIntent.putExtra("master_secret", getActivity().getIntent().getParcelableExtra("master_secret"));
 
         Intent intent = new Intent(getActivity(), RegistrationActivity.class);
         intent.putExtra("cancel_button", true);
         intent.putExtra("next_intent", nextIntent);
-        intent.putExtra("master_secret", getActivity().getIntent().getParcelableExtra("master_secret"));
+        intent.putExtra("master_secret", masterSecret);
         startActivity(intent);
       }
 

@@ -82,7 +82,6 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">மன்னிக்கவும், தேர்ந்தெடுத்த ஆடியோ செய்தி அளவு கட்டுப்பாடுகளை மீறுகிறது (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">பெறுநர் ஒரு செல்லுபடியாகும் SMS அல்லது மின்னஞ்சல் முகவரி அல்ல!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">செய்தி காலியாக உள்ளது!</string>
-  <string name="ConversationActivity_group_conversation_recipients">குழு உரையாடலில் உள்ளவர்கள் </string>
   <string name="ConversationActivity_group_conversation">குழு உரையாடல்</string>
   <string name="ConversationActivity_unnamed_group">பெயரிடப்படாத குழு</string>
   <string name="ConversationActivity_d_recipients_in_group">%d உறுப்பினர்கள்</string>
@@ -97,7 +96,6 @@
   <string name="ConversationActivity_transport_insecure_mms">பாதுகாப்பற்ற MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">இதனுடன் பெறவும் : %s</string>
-  <string name="ConversationActivity_install_textsecure">TextSecure நிறுவு: %s</string>
   <string name="ConversationActivity_error_leaving_group">குழுவை விட்டு விலகுவதில் பிழை...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">செய்தி விவரங்கள்</string>
@@ -235,6 +233,8 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ஐகான்</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">கடவுச்சொல்லை சமர்ப்பிக்க</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">தவறான கடவுச்சொல்!</string>
+  <!--PlayServicesProblemFragment-->
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">இந்த சாவிபரிமாட்ட்றத்திற்கான டிஜிட்டல் கையெழுத்தானது இந்த தொடர்பிடம்யிருந்து முன்னம் பெற்றதனைவிட்டு மாறியுள்ளது. இது யாரோ உங்கள் தொலைத்தொடர்பை குறுக்கிட்டு உளவுபார்க முயற்ச்சிக்கிறார்கள் என குறிக்கலாம், அல்லது இது இந்த தொடர்பு வெறுமனே Textsecure-ஐ மீண்டும் நிறுவி புதிய அடையாளச்சாவி பெற்றார்.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">நீங்கள் இந்த தொடர்புபை 
@@ -356,8 +356,6 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="KeyCachingService_passphrase_cached">TextSecure திறக்கப்பட்டுள்ளது </string>
   <string name="KeyCachingService_lock">கடவுச்சொல்லை வைத்து பூட்டவும் </string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d புதிய செய்திகள்</string>
-  <string name="MessageNotifier_most_recent_from_s">மிக அண்மையில் இவரிடமிருந்து: %s</string>
   <string name="MessageNotifier_encrypted_message">மறையாக்கப்பட செய்தி...</string>
   <string name="MessageNotifier_media_message_with_text">மீடியா செய்தி: %s</string>
   <string name="MessageNotifier_no_subject">(தலைப்பு இல்லை)</string>
@@ -399,7 +397,6 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">மீடியா செய்தி பதிவிறக்கப்படுகிறது</string>
   <string name="conversation_item__mms_image_description">மீடியா செய்தி</string>
-  <string name="conversation_item__play_button_description">ஓட்டு பொத்தான்</string>
   <string name="conversation_item__secure_message_description">பாதுகாப்பான செய்தி</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">பதிவிறக்கம்</string>
@@ -699,7 +696,6 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <string name="conversation_list__menu_search">தேடல்</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">தொடர்பின் புகைப்படம்</string>
-  <string name="conversation_list_item_view__attachment_indicator">இணைப்பு காட்டி</string>
   <string name="conversation_list_item_view__error_alert">பிழை எச்சரிக்கை</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">புதிய உரையாடல்</string>
