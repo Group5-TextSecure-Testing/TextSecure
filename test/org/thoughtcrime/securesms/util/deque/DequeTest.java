@@ -4,11 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class DequeTest {
+//Deque is an interface class
+public final class DequeTest {
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 
 }

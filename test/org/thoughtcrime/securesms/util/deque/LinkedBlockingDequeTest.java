@@ -72,7 +72,7 @@ public class LinkedBlockingDequeTest {
 		final Object[] names = Deque.toArray();
 		
 		assertEquals(names[0], Deque.getFirst());
-		assertEquals(names[-1], Deque.getLast());
+		assertEquals(names[names.length-1] , Deque.getLast());
 		
 		assertEquals(Joe, Deque.getFirst());
 		assertEquals(Mary, Deque.getLast());
